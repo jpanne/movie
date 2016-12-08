@@ -1,2 +1,2 @@
-# movie
-insert, update and retrieve movie files
+# movieDetail
+insert, update and retrieve movieDetail files
