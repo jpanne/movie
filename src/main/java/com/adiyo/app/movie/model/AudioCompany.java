@@ -1,6 +1,7 @@
 package com.adiyo.app.movie.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,6 +14,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "audio_company")
+@JsonIgnoreProperties({"movies"})
 public class AudioCompany implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -22,8 +24,8 @@ public class AudioCompany implements Serializable {
     @Column(name="name")
     private String audioCompany;
 
-    @JsonIgnore
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "audioCompanies")
+    //@JsonIgnore
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "audioCompanies")
     private Set<Movie> movies;
 
     public BigInteger getId() {

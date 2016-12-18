@@ -1,6 +1,7 @@
 package com.adiyo.app.movie.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,6 +14,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "image")
+@JsonIgnoreProperties({"movies"})
 public class Image implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -22,8 +24,8 @@ public class Image implements Serializable {
     private String name;
     private String type;
 
-    @JsonIgnore
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "images")
+    //@JsonIgnore
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "images")
     private Set<Movie> movies;
 
     public BigInteger getId() {
