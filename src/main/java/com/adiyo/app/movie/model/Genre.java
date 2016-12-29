@@ -24,7 +24,7 @@ public class Genre implements Serializable {
     private String name;
 
     //@JsonIgnore
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "genres")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "genres")
     private Set<Movie> movies;
 
     public BigInteger getId() {

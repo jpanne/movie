@@ -24,7 +24,7 @@ public class Composer implements Serializable{
     private String name;
 
     //@JsonIgnore
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "composers")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "composers")
     private Set<Movie> movies;
 
     public BigInteger getId() {

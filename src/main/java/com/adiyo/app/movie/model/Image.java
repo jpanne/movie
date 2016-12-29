@@ -25,7 +25,7 @@ public class Image implements Serializable {
     private String type;
 
     //@JsonIgnore
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "images")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "images")
     private Set<Movie> movies;
 
     public BigInteger getId() {

@@ -24,7 +24,7 @@ public class ProductionHouse implements Serializable {
     private String name;
 
     //@JsonIgnore
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "productionHouses")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "productionHouses")
     private Set<Movie> movies;
 
     public BigInteger getId() {

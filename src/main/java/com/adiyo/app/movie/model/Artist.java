@@ -24,7 +24,7 @@ public class Artist implements Serializable {
     private String name;
 
     //@JsonIgnore
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "artists")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "artists")
     private Set<Movie> movies;
 
     public BigInteger getId() {

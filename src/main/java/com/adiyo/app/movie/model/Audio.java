@@ -25,7 +25,7 @@ public class Audio implements Serializable{
     private String path;
 
     //@JsonIgnore
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "audios")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "audios")
     private Set<Movie> movies;
 
 
