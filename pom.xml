@@ -39,6 +39,12 @@
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 
@@ -77,7 +83,7 @@
 		</dependency>
 
 		<!-- aws dependencies -->
-		<dependency>
+		<!--<dependency>
 			<groupId>com.amazonaws</groupId>
 			<artifactId>aws-lambda-java-core</artifactId>
 			<version>1.1.0</version>
@@ -93,13 +99,14 @@
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
 			<version>1.2</version>
-		</dependency>
+		</dependency>-->
 
 
 	</dependencies>
 
 
 	<build>
+		<finalName>cineaadio</finalName>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
@@ -129,6 +136,16 @@
 					</execution>
 				</executions>
 			</plugin>
+
+			<!--<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<packagingExcludes>WEB-INF/lib/tomcat-*.jar</packagingExcludes>
+				</configuration>
+			</plugin>-->
+
 
 			<!-- Shade plugin for creating the uber jar -->
 			<!--<plugin>
