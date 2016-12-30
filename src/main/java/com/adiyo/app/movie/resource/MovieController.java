@@ -23,8 +23,8 @@ public class MovieController {
     MovieService movieService;
 
     @RequestMapping(value = "/movies", method = RequestMethod.GET)
-    public List<Movie> getMovies(@RequestParam(value="artist") String artist,
-                                 @RequestParam(value="composer") String composer) {
+    public List<Movie> getMovies(@RequestParam(value="artist", required = false) String artist,
+                                 @RequestParam(value="composer", required = false) String composer) {
         SearchCriteria criteria = new SearchCriteria(artist, composer);
         return movieService.getMovies(criteria);
     }
