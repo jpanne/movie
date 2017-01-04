@@ -18,4 +18,8 @@ public interface MovieRepository extends JpaRepository<Movie, BigInteger>{
 
     List<Movie> findByArtists_NameContainingIgnoreCaseAndComposers_NameContainingIgnoreCase(String artistName, String composerName);
 
+    Movie findByName(String name);
+
+
+
 }

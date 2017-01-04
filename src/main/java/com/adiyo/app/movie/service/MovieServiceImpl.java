@@ -1,14 +1,13 @@
 package com.adiyo.app.movie.service;
 
-import com.adiyo.app.movie.LambdaFunctionHandler;
 import com.adiyo.app.movie.model.Movie;
 import com.adiyo.app.movie.model.SearchCriteria;
 import com.adiyo.app.movie.repository.MovieRepository;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -50,5 +49,25 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public List<Movie> getMoviesByComposer(String composerName) {
         return movieRepository.findByComposers_NameContainingIgnoreCase(composerName);
+    }
+
+    @Override
+    public Movie getMovie(String name) {
+        return movieRepository.findByName(name);
+    }
+
+    @Override
+    public void saveMovie(Movie movie) {
+        movieRepository.save(movie);
+    }
+
+    @Override
+    public void updateMovie(Movie movie) {
+        movieRepository.save(movie);
+    }
+
+    @Override
+    public void deleteMovie(BigInteger id) {
+        movieRepository.delete(id);
     }
 }

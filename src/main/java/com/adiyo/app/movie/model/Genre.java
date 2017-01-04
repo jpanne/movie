@@ -14,7 +14,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "genre")
-@JsonIgnoreProperties({"movies"})
+@JsonIgnoreProperties({"id","movies"})
 public class Genre implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -23,7 +23,6 @@ public class Genre implements Serializable {
     private BigInteger id;
     private String name;
 
-    //@JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "genres")
     private Set<Movie> movies;
 

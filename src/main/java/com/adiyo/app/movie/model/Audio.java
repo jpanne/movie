@@ -14,7 +14,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "audio")
-@JsonIgnoreProperties({"movies"})
+@JsonIgnoreProperties({"id","movies"})
 public class Audio implements Serializable{
 
     private static final long serialVersionUID = 1L;
@@ -23,8 +23,8 @@ public class Audio implements Serializable{
     private BigInteger id;
     private String name;
     private String path;
+    private boolean favorite;
 
-    //@JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "audios")
     private Set<Movie> movies;
 
@@ -59,5 +59,13 @@ public class Audio implements Serializable{
 
     public void setMovies(Set<Movie> movies) {
         this.movies = movies;
+    }
+
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
     }
 }

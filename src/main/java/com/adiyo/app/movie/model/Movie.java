@@ -19,7 +19,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "movie")
-@JsonIgnoreProperties({"created","createdBy","updated","updatedBy"})
+@JsonIgnoreProperties({"id","created","createdBy","updated","updatedBy"})
 public class Movie implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -36,6 +36,7 @@ public class Movie implements Serializable {
     private String createdBy;
     private LocalDateTime updated;
     private String updatedBy;
+    private boolean favorite;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "movie_audio",
@@ -79,6 +80,21 @@ public class Movie implements Serializable {
             @JoinColumn(name = "movie_id", nullable = false, updatable = false) },
             inverseJoinColumns = { @JoinColumn(name = "composer_id", nullable = false, updatable = false) })
     private Set<Composer> composers;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "movie_director", joinColumns = {
+            @JoinColumn(name = "movie_id", nullable = false, updatable = false) },
+            inverseJoinColumns = { @JoinColumn(name = "director_id", nullable = false, updatable = false) })
+    private Set<Director> directors;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "movie_writer", joinColumns = {
+            @JoinColumn(name = "movie_id", nullable = false, updatable = false) },
+            inverseJoinColumns = { @JoinColumn(name = "writer_id", nullable = false, updatable = false) })
+    private Set<Writer> writers;
+
+
+
 
     public BigInteger getId() {
         return id;
@@ -206,5 +222,29 @@ public class Movie implements Serializable {
 
     public void setUpdatedBy(String updatedBy) {
         this.updatedBy = updatedBy;
+    }
+
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
+    }
+
+    public Set<Director> getDirectors() {
+        return directors;
+    }
+
+    public void setDirectors(Set<Director> directors) {
+        this.directors = directors;
+    }
+
+    public Set<Writer> getWriters() {
+        return writers;
+    }
+
+    public void setWriters(Set<Writer> writers) {
+        this.writers = writers;
     }
 }
