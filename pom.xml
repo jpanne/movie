@@ -7,7 +7,7 @@
 	<groupId>com.adiyo.app</groupId>
 	<artifactId>movie</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>movie</name>
 	<description>service to insert, update and fetch movieDetail audio</description>
@@ -29,13 +29,18 @@
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-actuator</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-tomcat</artifactId>
-				</exclusion>
-			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
@@ -43,12 +48,10 @@
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 
-<!--
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 		</dependency>
--->
 
 		<dependency>
 			<groupId>com.fasterxml.jackson.datatype</groupId>
@@ -79,30 +82,11 @@
 			<version>3.5</version>
 		</dependency>
 
-		<!-- aws dependencies -->
-		<dependency>
-			<groupId>com.amazonaws</groupId>
-			<artifactId>aws-lambda-java-core</artifactId>
-			<version>1.1.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.amazonaws</groupId>
-			<artifactId>aws-lambda-java-log4j</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-			<version>1.2</version>
-		</dependency>
-
-
 	</dependencies>
 
 
 	<build>
+		<finalName>cineaadio</finalName>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
@@ -132,24 +116,6 @@
 					</execution>
 				</executions>
 			</plugin>
-
-			<!-- Shade plugin for creating the uber jar -->
-			<!--<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-shade-plugin</artifactId>
-				<version>2.3</version>
-				<configuration>
-					<createDependencyReducedPom>false</createDependencyReducedPom>
-				</configuration>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>shade</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>-->
 
 		</plugins>
 	</build>

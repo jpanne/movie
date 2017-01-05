@@ -14,7 +14,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "image")
-@JsonIgnoreProperties({"movies"})
+@JsonIgnoreProperties({"id","movies", "artists"})
 public class Image implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -23,10 +23,13 @@ public class Image implements Serializable {
     private BigInteger id;
     private String name;
     private String type;
+    private String path;
 
-    //@JsonIgnore
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "images")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "images")
     private Set<Movie> movies;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "images")
+    private Set<Artist> artists;
 
     public BigInteger getId() {
         return id;
@@ -58,5 +61,21 @@ public class Image implements Serializable {
 
     public void setMovies(Set<Movie> movies) {
         this.movies = movies;
+    }
+
+    public Set<Artist> getArtists() {
+        return artists;
+    }
+
+    public void setArtists(Set<Artist> artists) {
+        this.artists = artists;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 }

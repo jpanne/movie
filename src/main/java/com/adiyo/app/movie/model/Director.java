@@ -1,6 +1,5 @@
 package com.adiyo.app.movie.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -9,13 +8,12 @@ import java.math.BigInteger;
 import java.util.Set;
 
 /**
- * Created by kishorechava on 12/7/16.
+ * Created by kishorechava on 1/3/17.
  */
-
 @Entity
-@Table(name = "artist")
+@Table(name = "director")
 @JsonIgnoreProperties({"id","movies"})
-public class Artist implements Serializable {
+public class Director implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -23,15 +21,8 @@ public class Artist implements Serializable {
     private BigInteger id;
     private String name;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "artists")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "directors")
     private Set<Movie> movies;
-
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "artist_image", joinColumns = {
-            @JoinColumn(name = "artist_id", nullable = false, updatable = false) },
-            inverseJoinColumns = { @JoinColumn(name = "image_id", nullable = false, updatable = false) })
-    private Set<Image> images;
-
 
     public BigInteger getId() {
         return id;
@@ -55,13 +46,5 @@ public class Artist implements Serializable {
 
     public void setMovies(Set<Movie> movies) {
         this.movies = movies;
-    }
-
-    public Set<Image> getImages() {
-        return images;
-    }
-
-    public void setImages(Set<Image> images) {
-        this.images = images;
     }
 }
